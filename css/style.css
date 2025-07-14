@@ -1,0 +1,715 @@
+/* General Body Styling */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1000;
+}
+.sidebar-nav ul li.sidebar-dropdown {
+    position: relative;
+}
+
+.sidebar-nav ul li.sidebar-dropdown .dropdown-toggle {
+    display: flex;
+    justify-content: space-between; /* Untuk mendorong ikon ke kanan */
+    align-items: center;
+    cursor: pointer;
+    /* Background sama dengan menu utama jika tidak aktif */
+    background-color: #2c3e50; 
+    border-left: 5px solid transparent; /* Tetap pertahankan border */
+}
+
+.sidebar-nav ul li.sidebar-dropdown .dropdown-toggle:hover {
+    background-color: #34495e;
+}
+
+.sidebar-nav ul li.sidebar-dropdown .dropdown-toggle .dropdown-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Rotate icon when dropdown is open */
+.sidebar-nav ul li.sidebar-dropdown.open .dropdown-toggle .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* Submenu container */
+.sidebar-nav ul li .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #3f5a70; /* Warna latar belakang sub-menu */
+    max-height: 0; /* Kunci untuk menyembunyikan */
+    overflow: hidden; /* Kunci untuk menyembunyikan konten yang meluap */
+    transition: max-height 0.4s ease-out; /* Animasi sembunyikan */
+}
+
+/* Show submenu when parent has 'open' class */
+.sidebar-nav ul li.sidebar-dropdown.open .submenu {
+    max-height: 500px; /* Tinggi maksimum saat terbuka, sesuaikan jika kontennya sangat panjang */
+    transition: max-height 0.4s ease-in; /* Animasi tampilkan */
+}
+
+/* Styling for actual submenu links */
+.sidebar-nav ul li .submenu li a {
+    padding: 10px 20px 10px 40px; /* Indentasi sub-menu */
+    font-size: 0.95em;
+    color: #ecf0f1;
+    border-left: none; /* Sub-menu tidak perlu border kiri aktif utama */
+}
+
+.sidebar-nav ul li .submenu li a:hover {
+    background-color: #577894;
+}
+
+/* Active state for sub-menu items */
+.sidebar-nav ul li .submenu li a.active {
+    background-color: #007bff; /* Warna aktif sub-menu */
+    border-left: 5px solid #00bcd4; /* Tambahkan kembali border kiri jika diinginkan */
+    color: white;
+}
+
+/* Style for parent dropdown when one of its children is active */
+.sidebar-nav ul li.sidebar-dropdown.active > .dropdown-toggle {
+    background-color: #007bff; /* Bisa juga berbeda, misalnya #223344 */
+    border-left-color: #00bcd4;
+}
+
+/* Media Queries for responsiveness */
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.sidebar-logo {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar-header h2 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #ecf0f1;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-nav ul li {
+    margin-bottom: 10px; /* Tambahkan baris ini untuk jarak antar item menu */
+}
+
+.sidebar-nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-left: 5px solid transparent;
+}
+
+.sidebar-nav ul li a:hover {
+    background-color: #34495e;
+    color: #fff;
+}
+
+.sidebar-nav ul li a.active {
+    background-color: #007bff;
+    border-left-color: #007bff;
+    font-weight: bold;
+}
+.sidebar-nav ul li a i {
+    margin-right: 8px;
+}
+
+/* Main Content Panel */
+.main-panel {
+    margin-left: 250px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar-user span {
+    margin-right: 15px;
+    color: #555;
+}
+
+.btn-logout {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #c82333;
+}
+
+/* Main Content Area */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #f9fbfd;
+}
+
+.content h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+.main-panel {
+    margin-left: 250px; /* Sesuaikan dengan lebar sidebar Anda */
+    flex-grow: 1; /* Pastikan ia mengisi sisa ruang horizontal */
+    display: flex; /* Untuk menumpuk elemen di dalamnya secara vertikal */
+    flex-direction: column; /* Menumpuk elemen secara vertikal */
+    width: 100%; /* Penting untuk flex-grow bekerja dengan baik */
+    min-height: 100vh; /* Pastikan main-panel juga mengisi tinggi penuh */
+    /* Tambahkan juga padding-top jika header Anda juga fixed */
+    /* padding-top: [tinggi header Anda]; */
+}
+
+/* Message Styling */
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 1px solid transparent;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+.message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+}
+
+
+/* Report Filters */
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+.form-inline .form-group {
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.form-inline .form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+.form-inline input[type="date"],
+.form-inline select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    width: 100%;
+}
+.form-inline .btn-primary {
+    margin-top: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+}
+.form-inline .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+/* Summary Cards */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h4 {
+    margin-top: 0;
+    color: #555;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.card .value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #007bff;
+}
+.card .value.revenue {
+    color: #28a745;
+}
+.card .value.expenses {
+    color: #dc3545;
+}
+.card .value.profit {
+    color: #007bff;
+}
+.card .value.neutral {
+    color: #6c757d;
+}
+
+/* Detailed Table Styling */
+.table-container {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    overflow-x: auto; /* Penting: agar tabel bisa discroll horizontal jika terlalu lebar */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    font-size: 0.85em; /* Ukuran font tabel diperkecil */
+    min-width: 800px; /* Minimal lebar tabel untuk mencegah terlalu kecil di desktop */
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0; /* Garis batas keseluruhan tabel */
+    border-radius: 8px;
+    overflow: hidden; /* Untuk memastikan border-radius diterapkan */
+}
+
+.data-table th,
+.data-table td {
+    padding: 8px 10px; /* Padding standar sel tabel */
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: middle;
+    white-space: normal; /* Default: teks akan membungkus */
+    word-break: break-word; /* Memastikan kata panjang juga bisa dipatahkan */
+    border-color: #e0e0e0; /* Warna garis batas sel */
+    padding: 12px 15px; /* Padding lebih besar untuk ruang */
+    font-size: 0.95em;
+}
+
+.data-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap; /* Header tetap satu baris */
+    text-align: left;
+}
+.data-table tbody tr:nth-child(even) {
+    background-color: #f5f5f5; /* Sedikit perbedaan warna baris genap */
+}
+.data-table tbody tr:hover {
+    background-color: #eaeaea; /* Efek hover pada baris */
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* KELAS BARU: Untuk kolom yang teksnya HARUS selalu satu baris (ID, angka, badge, tombol singkat) */
+.data-table .col-nowrap {
+    white-space: nowrap;
+}
+
+/* KELAS BARU: Untuk kolom yang teksnya BOLEH dan DISARANKAN dibungkus (nama, alamat, deskripsi panjang) */
+.data-table .col-wrap {
+    white-space: normal;
+    word-break: break-word;
+    max-width: 180px; /* Batasi lebar maksimum untuk kolom yang cenderung panjang (opsional) */
+}
+
+
+/* Gaya untuk gambar di dalam tabel */
+.data-table img {
+    max-width: 60px;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* Gaya untuk badge status di dalam tabel */
+.status-badge {
+    padding: 4px 8px; /* Padding badge yang sedikit lebih besar */
+    border-radius: 12px; /* Border radius yang lebih besar untuk efek pil */
+    font-size: 0.75em; /* Ukuran font badge sedikit lebih besar */
+    font-weight: bold;
+    display: inline-block;
+    min-width: 65px; /* Beri lebar minimum yang lebih masuk akal */
+    text-align: center;
+    white-space: nowrap; /* Pastikan teks di dalam badge tidak terbungkus */
+    text-transform: capitalize; /* Kapitalisasi huruf pertama */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Sedikit bayangan */
+}
+
+/* Gaya untuk tombol aksi di dalam tabel */
+.data-table .actions {
+    white-space: nowrap; /* Pastikan tombol aksi tetap dalam satu baris, jika muat */
+    /* Remove min-width here, let content determine */
+    display: flex; /* Gunakan flexbox untuk menata tombol */
+    gap: 4px; /* Jarak antar tombol */
+    justify-content: center; /* Pusatkan tombol jika perlu */
+    align-items: center;
+    flex-wrap: wrap; /* Izinkan tombol wrap jika tidak cukup ruang */
+}
+.data-table .actions form {
+    display: flex;
+    gap: 8px; /* Jarak antar elemen form */
+    align-items: center; /* Agar dropdown dan tombol sejajar */
+}
+.data-table .actions select {
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.9em;
+    background-color: white;
+    appearance: none; /* Hapus panah default untuk kustomisasi */
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23343a40" viewBox="0 0 4 5"><path d="M2 0L0 2h4L2 0z"/><path d="M2 5L0 3h4L2 5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+    padding-right: 25px; /* Ruang untuk panah kustom */
+    cursor: pointer;
+}
+.data-table .actions button {
+    background-color: #007bff; /* A common blue color for action buttons */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+.data-table .actions button:hover {
+    background-color: #0056b3; /* Warna lebih gelap saat hover */
+}
+
+.btn-small {
+    padding: 4px 8px; /* Padding tombol lebih kecil */
+    font-size: 0.75em; /* Ukuran font tombol lebih kecil */
+    margin: 0; /* Hapus margin agar gap berfungsi */
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; /* Jarak antara ikon dan teks */
+    border-radius: 4px; /* Sudut tombol lebih lembut */
+}
+
+.btn-small i {
+    font-size: 0.75em; /* Sesuaikan ukuran ikon di tombol kecil */
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Booking Status Colors */
+.status-badge.pending { background-color: #ffc107; color: #333; } /* Yellow */
+.status-badge.confirmed { background-color: #17a2b8; color: #fff; } /* Info Blue */
+.status-badge.rented { background-color: #007bff; color: #fff; } /* Primary Blue */
+.status-badge.completed { background-color: #28a745; color: #fff; } /* Success Green */
+.status-badge.cancelled, .status-badge.rejected { background-color: #dc3545; color: #fff; } /* Danger Red */
+.status-badge.available { background-color: #28a745; color: #fff; }
+.status-badge.unavailable { background-color: #dc3545; color: #fff; }
+.status-badge.maintenance { background-color: #ffc107; color: #333;}
+.status-badge.paid { background-color: #28a745; color: #fff; } /* Green */
+.status-badge.refunded { background-color: #6c757d; color: #fff; } /* Gray */
+
+
+/* Footer Styling */
+.footer {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    color: #777;
+    font-size: 0.9em;
+    border-top: 1px solid #eee;
+    margin-top: auto;
+}
+
+/* Form Elements */
+.form-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="datetime-local"], /* Tambahkan ini untuk datetime-local */
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style for readonly text inputs */
+.form-group input[type="text"][readonly] {
+    background-color: #e9ecef;
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+.btn-edit,
+.btn-delete,
+.btn-primary, /* Jika belum ada atau ingin konsisten */
+.btn-secondary { /* Jika belum ada atau ingin konsisten */
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 3px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+}
+
+.btn-edit {
+    background-color: #28a745; /* Hijau untuk Edit */
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #218838;
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Merah untuk Hapus */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Jika ada tombol lain seperti 'btn-primary' atau 'btn-secondary', pastikan juga ada gayanya */
+.btn-primary {
+    background-color: #007bff; /* Biru */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Abu-abu */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Penyesuaian untuk tombol di dalam tabel agar terlihat lebih rapi */
+.data-table .actions {
+    white-space: nowrap; /* Mencegah tombol putus baris */
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 200px;
+    }
+    .main-panel {
+        margin-left: 200px;
+    }
+    .navbar {
+        padding: 15px 20px;
+    }
+    .content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-wrapper {
+        flex-direction: column;
+    }
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .sidebar-header {
+        display: none;
+    }
+    .sidebar-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .sidebar-nav ul li {
+        margin: 0 5px;
+    }
+    .sidebar-nav ul li a {
+        padding: 10px 15px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+     .sidebar-nav ul li a.active {
+        border-left-color: transparent;
+        border-bottom-color: #007bff;
+    }
+    .main-panel {
+        margin-left: 0;
+    }
+    .content {
+        padding: 15px;
+    }
+    .navbar-brand {
+        font-size: 1.2em;
+    }
+    .navbar-user span {
+        display: none;
+    }
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+    .data-table {
+        font-size: 0.8em; /* Ukuran font tabel lebih kecil untuk mobile */
+        min-width: unset; /* Hapus min-width di mobile agar lebih fleksibel */
+    }
+    .data-table th, .data-table td {
+        padding: 6px 8px; /* Padding sedikit lebih kecil lagi untuk mobile */
+    }
+    .data-table .actions {
+        flex-direction: column; /* Tombol aksi menjadi kolom di mobile */
+        gap: 2px;
+        min-width: unset;
+        align-items: stretch; /* Memanjang sesuai lebar kolom */
+    }
+    .btn-small {
+        font-size: 0.65em; /* Ukuran font tombol lebih kecil */
+        padding: 3px 6px;
+        width: 100%; /* Pastikan tombol mengisi lebar jika flex-direction column */
+    }
+    .status-badge {
+        font-size: 0.65em; /* Ukuran font badge lebih kecil */
+        padding: 3px 5px;
+        min-width: 50px;
+    }
+    
+}
